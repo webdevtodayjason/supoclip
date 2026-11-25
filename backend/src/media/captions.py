@@ -262,7 +262,7 @@ def ass_fonts_dir(font_family: Optional[str]) -> Optional[Path]:
 
 
 # Bundled font used when the chosen one lacks glyphs for the clip's text. Its
-# width is close to THEBOLDFONT's, so hook-title line wrapping still fits.
+# width is close to Anton's, so hook-title line wrapping still fits.
 GLYPH_FALLBACK_FONT = "TikTokSans-Bold"
 # These draw lowercase letters as capitals; their fallback is uppercased so the
 # clip keeps the same all-caps look.

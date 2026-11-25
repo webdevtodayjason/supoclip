@@ -66,3 +66,41 @@ def test_whisper_accepts_documented_model_size_setting(monkeypatch):
     assert Config().whisper_model == "tiny"
     monkeypatch.setenv("WHISPER_MODEL", "base")
     assert Config().whisper_model == "base"
+
+
+# Pressloom (modified SupoClip, AGPL-3.0), 2026-11-24: self-hosted installs have no length limit.
+from src.config import UNLIMITED_VIDEO_DURATION_SECONDS
+
+
+@pytest.mark.parametrize("raw", [None, "0", "-1"])
+def test_self_host_has_no_video_length_limit_by_default(monkeypatch, raw):
+    monkeypatch.setenv("SELF_HOST", "true")
+    if raw is None:
+        monkeypatch.delenv("MAX_VIDEO_DURATION", raising=False)
+    else:
+        monkeypatch.setenv("MAX_VIDEO_DURATION", raw)
+    config = Config()
+
+    assert config.video_duration_unlimited is True
+    assert config.max_video_duration == UNLIMITED_VIDEO_DURATION_SECONDS
+    assert config.max_youtube_video_duration_for_plan("free", "inactive") == UNLIMITED_VIDEO_DURATION_SECONDS
+    assert config.max_youtube_video_duration_for_plan("pro", "active") == UNLIMITED_VIDEO_DURATION_SECONDS
+
+
+def test_self_host_respects_an_explicit_video_length_limit(monkeypatch):
+    monkeypatch.setenv("SELF_HOST", "true")
+    monkeypatch.setenv("MAX_VIDEO_DURATION", "3600")
+    config = Config()
+
+    assert config.video_duration_unlimited is False
+    assert config.max_video_duration == 3600
+
+
+def test_hosted_mode_keeps_its_video_length_caps(monkeypatch):
+    monkeypatch.setenv("SELF_HOST", "false")
+    monkeypatch.delenv("MAX_VIDEO_DURATION", raising=False)
+    monkeypatch.setenv("PRO_YOUTUBE_MAX_VIDEO_DURATION", "7200")
+    config = Config()
+
+    assert config.video_duration_unlimited is False
+    assert config.max_youtube_video_duration_for_plan("pro", "active") == 7200

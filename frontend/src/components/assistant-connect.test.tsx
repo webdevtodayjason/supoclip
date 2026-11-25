@@ -43,7 +43,7 @@ describe("assistant connectors", () => {
 
   it("signs Claude Code in with OAuth instead of a pasted key", () => {
     expect(claudeCodeOAuthCommands(HOSTED_MCP_URL)).toBe(
-      "claude mcp add --transport http supoclip https://mcp.supoclip.com/mcp\nclaude mcp login supoclip",
+      "claude mcp add --transport http supoclip http://localhost:9100/mcp\nclaude mcp login supoclip",
     );
   });
 });

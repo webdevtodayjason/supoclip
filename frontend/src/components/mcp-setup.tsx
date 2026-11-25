@@ -7,9 +7,9 @@ import { Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useCopyText } from "@/lib/copy-text";
-import { GITHUB_URL, getMcpUrl } from "@/lib/site";
+import { GITHUB_URL, SOURCE_REF, getMcpUrl } from "@/lib/site";
 
-const STDIO_SOURCE = `git+${GITHUB_URL}#subdirectory=mcp`;
+const STDIO_SOURCE = `git+${GITHUB_URL}@${SOURCE_REF}#subdirectory=mcp`;
 
 /** Copy-paste config for each kind of MCP client. Only the URL ever goes in a URL field. */
 export function mcpSnippets(url: string, key: string) {

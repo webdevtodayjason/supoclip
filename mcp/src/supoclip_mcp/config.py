@@ -11,11 +11,11 @@ import os
 from dataclasses import dataclass
 from typing import Optional
 
-# The official hosted SupoClip API. Override with SUPOCLIP_API_URL to point at
-# a self-hosted backend (e.g. http://localhost:8000).
-DEFAULT_API_URL = "https://api.supoclip.com"
-# The web app: where users create API keys and pick a plan.
-DEFAULT_APP_URL = "https://www.supoclip.com"
+# Pressloom (modified SupoClip, AGPL-3.0), 2026-11-24: default to this install, never the
+# hosted supoclip.com service. Override with SUPOCLIP_API_URL / SUPOCLIP_APP_URL.
+DEFAULT_API_URL = "http://localhost:8000"
+# The web app: where users create API keys.
+DEFAULT_APP_URL = "http://localhost:3107"
 
 # "http" serves Streamable HTTP at /mcp and legacy SSE at /sse from one
 # process. "sse" and "streamable-http" are older names for the same thing.

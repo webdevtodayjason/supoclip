@@ -180,13 +180,14 @@ def test_build_assemblyai_ass_subtitles_uses_cached_word_timings(tmp_path):
     assert "PlayResX: 1080" in content
     # Words are now each wrapped in their own font/colour span for per-word
     # karaoke highlighting, so check the cached words are rendered individually.
-    assert "hello" in content
-    assert "world" in content
+    # The default template is all caps.
+    assert "HELLO" in content
+    assert "WORLD" in content
     assert "Dialogue:" in content
 
 
 def test_ass_font_name_uses_internal_font_family():
-    assert video_utils.ass_font_name("THEBOLDFONT") == "THE BOLD FONT FREE VERSION"
+    assert video_utils.ass_font_name("Anton-Regular") == "Anton"
 
 
 def test_extend_keep_ranges_finishes_nearby_sentence(tmp_path):
@@ -250,7 +251,7 @@ def test_burn_ass_subtitles_passes_fontsdir_to_ffmpeg(tmp_path):
 
 
 def test_ass_font_name_uses_internal_font_family_for_libass():
-    assert video_utils.ass_font_name("THEBOLDFONT") == "THE BOLD FONT FREE VERSION"
+    assert video_utils.ass_font_name("Anton-Regular") == "Anton"
 
 
 def test_burn_ass_subtitles_passes_selected_fonts_dir(tmp_path):

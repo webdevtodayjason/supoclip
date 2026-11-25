@@ -212,7 +212,7 @@ class VideoProcessor:
 
     def __init__(
         self,
-        font_family: str = "THEBOLDFONT",
+        font_family: str = "Anton-Regular",
         font_size: int = 24,
         font_color: str = "#FFFFFF",
     ):
@@ -223,7 +223,7 @@ class VideoProcessor:
         if not resolved_font:
             resolved_font = find_font_path("TikTokSans-Regular")
         if not resolved_font:
-            resolved_font = find_font_path("THEBOLDFONT")
+            resolved_font = find_font_path("Anton-Regular")
         self.font_path = str(resolved_font) if resolved_font else ""
 
     def get_optimal_encoding_settings(
@@ -788,7 +788,7 @@ def create_clips_with_transitions(
         f"Creating {len(segments)} standalone clips subtitles={add_subtitles} template '{caption_template}'"
     )
     logger.info(
-        "Inter-clip transitions are disabled for standalone SupoClip exports"
+        "Inter-clip transitions are disabled for standalone Pressloom Clips exports"
     )
     return create_clips_from_segments(
         video_path,

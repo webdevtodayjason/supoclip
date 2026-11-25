@@ -14,13 +14,13 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Skeleton } from "@/components/ui/skeleton";
 import { authClient, useSession } from "@/lib/auth-client";
 import { useCopyText } from "@/lib/copy-text";
-import { GITHUB_URL } from "@/lib/site";
+import { GITHUB_URL, SOURCE_REF } from "@/lib/site";
 import { KeyClientSetup } from "@/components/mcp-setup";
 import { AssistantConnect } from "@/components/assistant-connect";
 
 const DOCS = [
-  { labelKey: "docsMcp", href: `${GITHUB_URL}/blob/main/mcp/README.md` },
-  { labelKey: "docsRest", href: `${GITHUB_URL}/blob/main/docs/api-reference.md#authenticating-with-api-keys` },
+  { labelKey: "docsMcp", href: `${GITHUB_URL}/blob/${SOURCE_REF}/mcp/README.md` },
+  { labelKey: "docsRest", href: `${GITHUB_URL}/blob/${SOURCE_REF}/docs/api-reference.md#authenticating-with-api-keys` },
 ] as const;
 
 interface ApiKey {

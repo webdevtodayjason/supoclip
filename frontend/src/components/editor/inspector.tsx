@@ -226,7 +226,7 @@ export function Inspector({
               </div>
               <Field label={t("captions.font")}>
                 <Select
-                  value={doc.captions.font}
+                  value={doc.captions.font === "THEBOLDFONT" ? "Anton-Regular" : doc.captions.font}
                   onValueChange={(font) =>
                     caption({ font: font as CaptionStyle["font"] })
                   }
@@ -240,7 +240,7 @@ export function Inspector({
                     <SelectItem value="Poppins-ExtraBold">
                       Poppins Extra Bold
                     </SelectItem>
-                    <SelectItem value="THEBOLDFONT">The Bold Font</SelectItem>
+                    <SelectItem value="Anton-Regular">Anton</SelectItem>
                   </SelectContent>
                 </Select>
               </Field>

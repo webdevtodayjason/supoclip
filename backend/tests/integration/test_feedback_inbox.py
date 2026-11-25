@@ -872,7 +872,7 @@ async def test_admins_can_only_switch_test_and_read_the_hermes_webhook(
     tested = await client.post(f"{hook}/test", headers=auth_headers)
     assert tested.status_code == 200 and tested.json()["delivery"]["status"] == "delivered"
     sample = hermes.calls[-1]["body"]
-    assert sample["submission"]["category"] == "test" and sample["submission"]["message"] == "Test from SupoClip admin"
+    assert sample["submission"]["category"] == "test" and sample["submission"]["message"] == "Test from Pressloom Clips admin"
     assert sample["delivery_id"] == tested.json()["delivery"]["id"]
     log = (await client.get(f"{hook}/deliveries", headers=auth_headers)).json()["deliveries"]
     assert log[0]["is_test"] and log[0]["status"] == "delivered"

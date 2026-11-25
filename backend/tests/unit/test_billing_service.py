@@ -263,3 +263,30 @@ def test_reduced_quality_youtube_sources_get_their_own_cache_entry():
     assert TaskService._build_cache_key("upload://a.mp4", "video_url", "fast", "720") == (
         TaskService._build_cache_key("upload://a.mp4", "video_url", "fast")
     )
+
+
+# Pressloom (modified SupoClip, AGPL-3.0), 2026-11-24: no per-video limit is reported as None.
+@pytest.mark.asyncio
+async def test_self_host_summary_reports_no_video_length_limit(monkeypatch):
+    service = BillingService(_FakeSession([]))  # type: ignore[arg-type]
+    monkeypatch.setattr(service.config, "monetization_enabled", False)
+    monkeypatch.setattr(service.config, "video_duration_unlimited", True, raising=False)
+
+    summary = await service.get_usage_summary("user-1")
+
+    assert summary["max_youtube_duration_seconds"] is None
+    assert summary["max_upload_duration_seconds"] is None
+    assert summary["can_create_task"] is True
+
+
+@pytest.mark.asyncio
+async def test_self_host_summary_reports_an_explicit_video_length_limit(monkeypatch):
+    service = BillingService(_FakeSession([]))  # type: ignore[arg-type]
+    monkeypatch.setattr(service.config, "monetization_enabled", False)
+    monkeypatch.setattr(service.config, "video_duration_unlimited", False, raising=False)
+    monkeypatch.setattr(service.config, "max_video_duration", 3600)
+
+    summary = await service.get_usage_summary("user-1")
+
+    assert summary["max_youtube_duration_seconds"] == 3600
+    assert summary["max_upload_duration_seconds"] == 3600

@@ -456,9 +456,9 @@ async def retry_delivery(db: AsyncSession, delivery_id: str) -> bool:
     return bool(result.rowcount)
 
 
-TEST_MESSAGE = "This is a test message from the SupoClip feedback inbox. Your webhook works."
+TEST_MESSAGE = "This is a test message from the Pressloom Clips feedback inbox. Your webhook works."
 HERMES_TEST_CATEGORY = "test"
-HERMES_TEST_MESSAGE = "Test from SupoClip admin"
+HERMES_TEST_MESSAGE = "Test from Pressloom Clips admin"
 
 
 async def send_test(db: AsyncSession, webhook_id: str, admin: dict[str, Any]) -> dict[str, Any] | None:

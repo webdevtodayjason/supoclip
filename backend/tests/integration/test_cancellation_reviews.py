@@ -356,9 +356,16 @@ async def test_account_migration_transfer_is_excluded_until_the_customer_cancels
                destination_account VARCHAR(255), destination_customer VARCHAR(255),
                destination_subscription VARCHAR(255), stage VARCHAR(32), cancellation_requested BOOLEAN,
                review_reason TEXT)"""))
+    # Pressloom, 2026-11-24: name the columns. Fresh installs now create the real table
+    # (backend migration 20261124_0001), which also requires paid_through and livemode.
+    columns = ("id, user_id, source_account, source_customer, source_subscription, destination_account, "
+               "destination_customer, destination_subscription, stage, cancellation_requested, review_reason")
+    values = ":id, :u, :acct, :cus, :sub, 'acct_dest', 'cus_dest', NULL, 'destination_staged', FALSE, NULL"
+    if not created_table:
+        columns += ", paid_through, livemode"
+        values += ", now() + interval '30 days', FALSE"
     await db_session.execute(
-        text("""INSERT INTO stripe_account_migrations VALUES (:id, :u, :acct, :cus, :sub, 'acct_dest', 'cus_dest',
-                NULL, 'destination_staged', FALSE, NULL)"""),
+        text(f"INSERT INTO stripe_account_migrations ({columns}) VALUES ({values})"),
         {"id": str(uuid4()), "u": user_id, "acct": ACCOUNT, "cus": customer, "sub": sub_id},
     )
     await db_session.commit()

@@ -6,6 +6,7 @@ import { createTranslator } from "next-intl";
 import { getLocale, getTranslations } from "next-intl/server";
 import { intlLocale } from "@/i18n/config";
 import { getPrismaClient } from "@/server/prisma";
+import { SITE_NAME } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 
@@ -67,7 +68,7 @@ export default async function StatusPage() {
         <div className="mx-auto flex h-16 max-w-3xl items-center justify-between px-6">
           <Link href="/" className="flex items-center gap-2.5">
             <Image src="/logo.png" alt="" width={24} height={24} className="rounded-lg dark:invert" />
-            <span className="font-display text-lg font-bold">SupoClip</span>
+            <span className="font-display text-lg font-bold">{SITE_NAME}</span>
           </Link>
           <span className="text-sm text-muted-foreground">{t("title")}</span>
         </div>

@@ -57,7 +57,12 @@ class Word(Model):
 class CaptionStyle(Model):
     enabled: bool = True
     font: Literal[
-        "TikTokSans-Regular", "TikTokSans-Bold", "Poppins-ExtraBold", "THEBOLDFONT"
+        "TikTokSans-Regular",
+        "TikTokSans-Bold",
+        "Poppins-ExtraBold",
+        "Anton-Regular",
+        # Legacy drafts; font_registry.FONT_ALIASES renders it as Anton.
+        "THEBOLDFONT",
     ] = "Poppins-ExtraBold"
     # 1080-wide units; 132 matches the generation renderer's largest caption.
     size: int = Field(default=54, ge=20, le=132)

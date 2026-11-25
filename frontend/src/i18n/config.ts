@@ -21,15 +21,9 @@ export const NAMESPACES = [
   "editor",
   "social",
   "analytics",
-  "marketing",
-  "seo",
-  "blog",
-  "changelog",
   "admin",
-  "affiliate",
   "status",
   "share",
-  "legal",
 ] as const;
 
 export type Namespace = (typeof NAMESPACES)[number];

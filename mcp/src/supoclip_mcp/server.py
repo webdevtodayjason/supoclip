@@ -3,10 +3,10 @@
 MCP server for SupoClip — an AI tool that turns long-form videos into short,
 vertical, subtitled viral clips.
 
-The server talks to the SupoClip REST API. By default it targets the official
-hosted instance at ``https://api.supoclip.com``; set ``SUPOCLIP_API_URL`` to
-use a self-hosted backend. Authenticate by creating an API key in your SupoClip
-account and exposing it as ``SUPOCLIP_API_KEY``.
+The server talks to the Pressloom Clips REST API (based on SupoClip, AGPL-3.0). By default
+it targets ``http://localhost:8000``; set ``SUPOCLIP_API_URL`` to point at another
+install. Authenticate by creating an API key in your account and exposing it as
+``SUPOCLIP_API_KEY``.
 
 Typical workflow:
     1. ``supoclip_create_clip_task`` with a YouTube URL  -> returns a task_id

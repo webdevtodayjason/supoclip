@@ -58,3 +58,9 @@ wdth=100, opsz=36, slnt=0` with fontTools `varLib.instancer`, renamed to family
 "TikTok Sans" / style "Bold". libass renders a variable font's default instance,
 so captions need the static file to get real bold TikTok Sans.
 Source: https://fonts.google.com/specimen/TikTok+Sans (OFL).
+
+## Pressloom changes (2026-11-24)
+
+- Removed `THEBOLDFONT.ttf`: its license is listed as free for personal use only on some sources, so it is not safe for commercial use. The name `THEBOLDFONT` is kept as an alias for `Anton-Regular` (`FONT_ALIASES` in `src/font_registry.py`), so older drafts, templates and preferences still render.
+- `TikTokSans-*.ttf`: TikTok Inc., SIL Open Font License 1.1 (https://github.com/tiktok/TikTokSans).
+- License texts for every bundled font are in `licenses/`.
