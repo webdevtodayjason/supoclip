@@ -12,7 +12,7 @@ import { FeedbackButton } from "@/components/feedback-button";
 import { PostHogIdentity } from "@/components/posthog-identity";
 import { ThemeProvider } from "@/components/theme-provider";
 import { intlLocale } from "@/i18n/config";
-import { APP_STORE_ID, COMPANY_NAME, getSiteUrl } from "@/lib/site";
+import { COMPANY_NAME, SITE_NAME, getSiteUrl } from "@/lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,21 +47,18 @@ export async function generateMetadata(): Promise<Metadata> {
   },
   description: t("description"),
   metadataBase: new URL(getSiteUrl()),
-  applicationName: "SupoClip",
-  authors: [{ name: "SupoClip Team", url: getSiteUrl() }],
-  creator: "SupoClip Team",
+  applicationName: SITE_NAME,
+  authors: [{ name: COMPANY_NAME, url: getSiteUrl() }],
+  creator: COMPANY_NAME,
   publisher: COMPANY_NAME,
   category: t("category"),
   icons: {
     icon: "/icon.png",
   },
-  itunes: {
-    appId: APP_STORE_ID,
-  },
   openGraph: {
     title: t("title"),
     description: t("openGraphDescription"),
-    siteName: "SupoClip",
+    siteName: SITE_NAME,
     type: "website",
   },
   twitter: {
@@ -69,17 +66,8 @@ export async function generateMetadata(): Promise<Metadata> {
     title: t("title"),
     description: t("twitterDescription"),
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
-  },
+  // Internal tool: keep it out of search engines.
+  robots: { index: false, follow: false },
   };
 }
 

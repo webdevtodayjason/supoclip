@@ -77,7 +77,7 @@ it("fills the new key into MCP client config, never into the assistants' setup",
   ), { status: 200 }));
   render(<ApiKeysPage />);
   // Only the chat assistants show the URL until a key exists.
-  expect(screen.getAllByText("https://mcp.supoclip.com/mcp")).toHaveLength(1);
+  expect(screen.getAllByText("http://localhost:9100/mcp")).toHaveLength(1);
   expect(screen.queryByText(/Bearer sk_/)).not.toBeInTheDocument();
   fireEvent.click(screen.getByRole("button", { name: "Create key" }));
   fireEvent.change(await screen.findByLabelText("Name"), { target: { value: "Cursor" } });
@@ -85,7 +85,7 @@ it("fills the new key into MCP client config, never into the assistants' setup",
   await screen.findByText("sk_only-once");
   await waitFor(() => expect(fetch).toHaveBeenCalledWith("/api/api-keys", expect.objectContaining({ body: JSON.stringify({ name: "Cursor" }) })));
   const config = JSON.parse(screen.getByText(/"mcpServers"/).textContent ?? "");
-  expect(config.mcpServers.supoclip).toEqual({ url: "https://mcp.supoclip.com/mcp", headers: { Authorization: "Bearer sk_only-once" } });
+  expect(config.mcpServers.supoclip).toEqual({ url: "http://localhost:9100/mcp", headers: { Authorization: "Bearer sk_only-once" } });
   // Chat assistants sign in with OAuth: the new key never reaches their setup or links.
   // (The open dialog hides the page from the accessibility tree, hence `hidden`.)
   const assistants = screen.getByRole("region", { name: "Connect Claude, ChatGPT or Grok", hidden: true });

@@ -7,6 +7,11 @@ import subprocess
 
 SUPPORTED_FONT_EXTENSIONS = (".ttf", ".otf")
 FONTS_DIR = Path(__file__).parent.parent / "fonts"
+
+# Pressloom (modified SupoClip, AGPL-3.0), 2026-11-24: THEBOLDFONT was removed because its
+# license does not clearly allow commercial use. Saved drafts, templates and user preferences
+# that still name it resolve to Anton (SIL OFL 1.1), a similar heavy condensed face.
+FONT_ALIASES = {"THEBOLDFONT": "Anton-Regular"}
 USER_FONTS_DIR = FONTS_DIR / "users"
 TTF_NAME_ID_FONT_FAMILY = 1
 TTF_NAME_ID_FULL_NAME = 4
@@ -125,6 +130,7 @@ def find_font_path(
     requested = font_name.strip()
     if not requested:
         return None
+    requested = FONT_ALIASES.get(requested, requested)
 
     search_dirs = [FONTS_DIR]
     if user_id:

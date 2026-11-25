@@ -22,7 +22,7 @@ CAPTION_TEMPLATES: Dict[str, Dict[str, Any]] = {
     "default": {
         "name": "Default",
         "description": "Punchy word-by-word captions with a pop highlight and emojis",
-        "font_family": "THEBOLDFONT",
+        "font_family": "Anton-Regular",
         "font_size": 32,
         "font_color": "#FFFFFF",
         "highlight_color": "#FFE000",  # Bright yellow for the active word
@@ -36,7 +36,7 @@ CAPTION_TEMPLATES: Dict[str, Dict[str, Any]] = {
         "animation": "karaoke",
         "word_pop": True,
         "emoji": True,
-        "uppercase": False,
+        "uppercase": True,
         "shadow": True,
         "glow": False,
         "max_words_per_line": 4,
@@ -45,7 +45,7 @@ CAPTION_TEMPLATES: Dict[str, Dict[str, Any]] = {
     "hormozi": {
         "name": "Hormozi",
         "description": "Bold green highlight with a pill behind the active word",
-        "font_family": "THEBOLDFONT",
+        "font_family": "Anton-Regular",
         "font_size": 32,
         "font_color": "#FFFFFF",
         "highlight_color": "#00FF66",  # Bright green
@@ -68,7 +68,7 @@ CAPTION_TEMPLATES: Dict[str, Dict[str, Any]] = {
     "mrbeast": {
         "name": "MrBeast",
         "description": "Large yellow text with red pop highlights and emojis",
-        "font_family": "THEBOLDFONT",
+        "font_family": "Anton-Regular",
         "font_size": 34,
         "font_color": "#FFFF00",  # Yellow
         "highlight_color": "#FF2D2D",  # Red
@@ -137,7 +137,7 @@ CAPTION_TEMPLATES: Dict[str, Dict[str, Any]] = {
     "neon": {
         "name": "Neon",
         "description": "Glowing neon text with magenta highlights",
-        "font_family": "THEBOLDFONT",
+        "font_family": "Anton-Regular",
         "font_size": 30,
         "font_color": "#00FFFF",  # Cyan
         "highlight_color": "#FF00FF",  # Magenta
@@ -151,7 +151,7 @@ CAPTION_TEMPLATES: Dict[str, Dict[str, Any]] = {
         "animation": "karaoke",
         "word_pop": True,
         "emoji": False,
-        "uppercase": False,
+        "uppercase": True,
         "shadow": False,
         "glow": True,
         "max_words_per_line": 4,

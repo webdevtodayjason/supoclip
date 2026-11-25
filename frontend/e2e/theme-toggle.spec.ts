@@ -32,11 +32,10 @@ const html = (page: Page) => page.locator("html");
 
 test.use({ colorScheme: "dark", viewport: { width: 1440, height: 900 } });
 
-test("marketing and auth pages stay light for a dark OS preference and a saved dark choice", async ({ page }) => {
+test("auth pages stay light for a dark OS preference and a saved dark choice", async ({ page }) => {
   await page.route("**/api/auth/get-session**", route => route.fulfill({ json: null }));
-  await page.goto("/");
+  await page.goto("/sign-in");
   await expect(html(page)).toHaveClass(/\blight\b/);
-  await shot(page, "landing-os-dark");
 
   await page.evaluate(() => localStorage.setItem("theme", "dark"));
   await page.goto("/sign-in");

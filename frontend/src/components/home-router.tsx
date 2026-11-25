@@ -1,10 +1,13 @@
 "use client";
 
+// Modified by Pressloom (modified SupoClip, AGPL-3.0), 2026-11-24: signed-out visitors go to
+// sign-in instead of the SupoClip marketing landing page.
+import { useEffect } from "react";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
 
-import LandingPage from "@/components/landing-page";
+import { PageLoading } from "@/components/app/page-state";
 import { useSession } from "@/lib/auth-client";
-import { isLandingOnlyModeEnabled } from "@/lib/app-flags";
 
 const HomeApp = dynamic(() => import("@/components/home-app"), {
   ssr: false,
@@ -12,10 +15,16 @@ const HomeApp = dynamic(() => import("@/components/home-app"), {
 
 export function HomeRouter() {
   const { data: session, isPending } = useSession();
+  const router = useRouter();
+  const signedOut = !isPending && !session?.user;
 
-  if (!isLandingOnlyModeEnabled && !isPending && session?.user) {
+  useEffect(() => {
+    if (signedOut) router.replace("/sign-in");
+  }, [router, signedOut]);
+
+  if (!isPending && session?.user) {
     return <HomeApp />;
   }
 
-  return <LandingPage />;
+  return <PageLoading />;
 }

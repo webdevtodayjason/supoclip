@@ -1,43 +1,40 @@
-# Contributing to SupoClip
+# Contributing to Pressloom Clips
 
-Thanks for your interest in improving SupoClip. By submitting a pull request,
-patch, commit, issue attachment, or other contribution to this repository, you
-agree to the terms below.
+Pressloom Clips is a modified version of [SupoClip](https://github.com/FujiwaraChoki/supoclip),
+licensed under the [GNU Affero General Public License v3](LICENSE) (AGPL-3.0).
 
-## Contribution License
+## Contribution license
 
-You represent that you have the right to submit your contribution and that it
-does not knowingly violate any third-party rights.
+Contributions are accepted under AGPL-3.0, the same license as the rest of the repository
+(inbound = outbound). There is no separate grant to relicense your contribution. You represent
+that you have the right to submit it and that it does not knowingly violate anyone's rights.
 
-Unless a separate written agreement says otherwise, you grant the SupoClip
-project owner a perpetual, worldwide, non-exclusive, royalty-free, irrevocable
-license to use, reproduce, modify, distribute, publicly perform, publicly
-display, sublicense, and relicense your contribution as part of SupoClip or
-related products and services.
+## Clean-room rule for upstream features
 
-This grant includes the right to distribute your contribution under the
-AGPL-3.0 license, under future open-source licenses used by SupoClip, and under
-commercial or proprietary licenses offered by the project owner.
+This fork is built on SupoClip commit `d2378a9` (18 November 2026), the last release published
+under AGPL-3.0. Later upstream releases use the SupoClip Noncommercial Source License, which does
+not allow Pressloom's use, so none of that code may enter this repository.
 
-To the maximum extent permitted by law, you waive any moral rights, neighboring
-rights, or similar rights that would prevent the project owner from exercising
-the license granted above.
+- Never merge, cherry-pick, copy or paraphrase code from upstream SupoClip after `d2378a9`.
+- To rebuild a feature that exists upstream, write a spec from public material only (release
+  notes, pull request titles, documentation, the hosted app's behavior) and implement it without
+  reading upstream code. Keep the spec with the change.
+- Don't add the upstream repository as a git remote in a working clone.
 
-Submitting a contribution does not give you ownership of SupoClip, any SupoClip
-trademarks, or any commercial license rights beyond the public license that
-applies to the repository.
+## Notices
+
+- Keep existing copyright and license notices.
+- Mark files you change with a short "Modified by Pressloom" note and the date (AGPL-3.0 §5a).
+- Don't use the SupoClip name or logo as branding. Naming SupoClip as the upstream project
+  (attribution) is fine.
 
 ## Development
 
-See [README.md](README.md) and [CLAUDE.md](CLAUDE.md) for local development
-instructions.
+See [README.md](README.md) and [CLAUDE.md](CLAUDE.md) for local development instructions.
 
 ## Changelog
 
-If a pull request changes something a person using SupoClip can see, add a line
-to [CHANGELOG.md](CHANGELOG.md) at the repository root. Put it under today's
-date (`## YYYY-MM-DD`, newest dates first). Write what changed for users, tag
-it **New**, **Improved**, **Fixed**, or **Under the hood**, and link the pull
-request. Skip internal-only or CI-only changes, or fold several of them into
-one **Under the hood** line. Do not include customer names, email addresses,
-user IDs, or other private details. This repository is public.
+If a change is visible to people using the app, add a line to [CHANGELOG.md](CHANGELOG.md) under
+today's date (`## YYYY-MM-DD`, newest first), tagged **New**, **Improved**, **Fixed** or
+**Under the hood**. Don't include customer names, email addresses, user IDs or other private
+details.

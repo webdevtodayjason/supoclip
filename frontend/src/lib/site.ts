@@ -1,13 +1,27 @@
-export const SITE_NAME = "SupoClip";
-export const COMPANY_NAME = "Shiori LLC";
-export const COMPANY_REGISTRATION_NUMBER = "10603065";
-export const COMPANY_REGISTERED_ADDRESS = "8 The Green, Suite B, Dover, DE 19901, United States";
-export const DEFAULT_SITE_URL = "https://www.supoclip.com";
-export const HOSTED_APP_URL = DEFAULT_SITE_URL;
-export const GITHUB_URL = "https://github.com/FujiwaraChoki/supoclip";
-export const DISCORD_COMMUNITY_URL = "https://discord.gg/Sz9ZD5REXg";
-/** The hosted MCP server's Streamable HTTP endpoint (legacy SSE clients use `/sse`). */
-export const HOSTED_MCP_URL = "https://mcp.supoclip.com/mcp";
+// Modified by Pressloom (modified SupoClip, AGPL-3.0), 2026-11-24: Pressloom branding, no links
+// to the hosted SupoClip service, and the source/attribution links AGPL-3.0 requires.
+
+export const SITE_NAME = "Pressloom Clips";
+export const COMPANY_NAME = "Pressloom";
+export const DEFAULT_SITE_URL = "http://localhost:3107";
+
+/**
+ * Where users of this install get its source code (AGPL-3.0 §13). Point it at the exact
+ * code you deploy, for example a tag or commit, with NEXT_PUBLIC_SOURCE_URL.
+ */
+export const SOURCE_CODE_URL =
+  process.env.NEXT_PUBLIC_SOURCE_URL?.trim() || "https://github.com/webdevtodayjason/supoclip/tree/agpl-base";
+/** Repository the docs and MCP install snippets point at, and the branch they read from. */
+export const GITHUB_URL = "https://github.com/webdevtodayjason/supoclip";
+export const SOURCE_REF = process.env.NEXT_PUBLIC_SOURCE_REF?.trim() || "agpl-base";
+
+/** Upstream project this install is based on (attribution only; no affiliation). */
+export const UPSTREAM_NAME = "SupoClip";
+export const UPSTREAM_REPO_URL = "https://github.com/FujiwaraChoki/supoclip";
+export const UPSTREAM_LICENSE = "AGPL-3.0";
+
+/** Default MCP endpoint (the compose `mcp` service); set NEXT_PUBLIC_MCP_URL in production. */
+export const HOSTED_MCP_URL = "http://localhost:9100/mcp";
 
 /** MCP endpoint shown in setup snippets; self-hosters set NEXT_PUBLIC_MCP_URL. */
 export function getMcpUrl() {
@@ -18,18 +32,6 @@ export function getMcpUrl() {
   } catch {
     return HOSTED_MCP_URL;
   }
-}
-export const APP_STORE_ID = "6784760040";
-export const APP_STORE_URL = `https://apps.apple.com/us/app/supoclip/id${APP_STORE_ID}`;
-export const PRODUCT_HUNT_URL =
-  "https://www.producthunt.com/products/supoclip?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-supoclip";
-/** Product Hunt's launch badge; it shows the live upvote count once the launch is up. */
-export const PRODUCT_HUNT_BADGE_URL =
-  "https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1276786&theme=dark";
-
-/** Opens the App Store's offer-code redemption for a creator's custom code (the "Creator offer"). */
-export function appStoreRedeemUrl(code: string) {
-  return `https://apps.apple.com/redeem?ctx=offercodes&id=${APP_STORE_ID}&code=${encodeURIComponent(code.toUpperCase())}`;
 }
 
 export function getSiteUrl() {

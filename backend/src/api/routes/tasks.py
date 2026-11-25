@@ -110,6 +110,12 @@ def _duration_unavailable_error(platform: str) -> HTTPException:
     )
 
 
+def _duration_limit(reported: int | None) -> int:
+    """Pressloom, 2026-11-24: the billing summary reports None when the install has no
+    per-video limit; preflight then checks against the config's effective cap."""
+    return int(reported) if reported else get_config().max_video_duration
+
+
 async def _preflight_youtube_source(url: str, duration_limit: int) -> Dict[str, Any]:
     """Check duration before creating a task or consuming a generation."""
     # wait_for cancels the awaiting task when this elapses. A yt-dlp call already
@@ -760,19 +766,19 @@ async def _create_task(request: Request, db: AsyncSession, attempt: SourceAttemp
         stream_metadata: Dict[str, Any] | None = None
         if source_type == "youtube":
             metadata = await _preflight_youtube_source(
-                raw_source["url"], billing["max_youtube_duration_seconds"]
+                raw_source["url"], _duration_limit(billing["max_youtube_duration_seconds"])
             )
             source_title = source_title or metadata.get("title") or "YouTube Video"
             duration_seconds = float(metadata["duration"])
         elif source_type in {"twitch", "kick"}:
-            stream_metadata = await _preflight_stream_source(raw_source["url"], source_type, billing["max_youtube_duration_seconds"])
+            stream_metadata = await _preflight_stream_source(raw_source["url"], source_type, _duration_limit(billing["max_youtube_duration_seconds"]))
             source_title = source_title or stream_metadata.get("title") or f"{source_type.title()} Video"
             duration_seconds = float(stream_metadata["duration"])
         else:
             if await foreign_upload(db, raw_source["url"], user_id):
                 raise HTTPException(status_code=404, detail="Video file not found")
             duration_seconds = await _preflight_upload_source(
-                raw_source["url"], user_id, billing["max_upload_duration_seconds"], db
+                raw_source["url"], user_id, _duration_limit(billing["max_upload_duration_seconds"]), db
             )
 
         try:

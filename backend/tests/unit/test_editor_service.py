@@ -351,7 +351,7 @@ def test_editor_starts_from_the_generated_caption_template():
     assert style["accent"] == "#00FF66"
     assert style["background"] is False
     assert style["wordsPerLine"] == 3
-    assert style["font"] == "THEBOLDFONT"
+    assert style["font"] == "Anton-Regular"
     # Same pixel size and centre row as the generated 1080x1920 clip.
     assert style["size"] == round(32 * 1080 / 560)
     assert style["y"] * 1920 == get_safe_vertical_position(1920, int(62 * 1.5), 0.74)

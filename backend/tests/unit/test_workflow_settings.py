@@ -412,7 +412,7 @@ def test_labels_reach_the_subtitle_file(tmp_path):
     )
     text = ass.read_text(encoding="utf-8")
     assert "Style: Point," in text
-    assert "Why it broke" in text
+    assert "WHY IT BROKE" in text.upper()
 
 
 @pytest.mark.asyncio

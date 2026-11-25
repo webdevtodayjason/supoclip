@@ -11,6 +11,10 @@ LOCAL_OLLAMA_BASE_URL = "http://localhost:11434/v1"
 DOCKER_OLLAMA_BASE_URL = "http://host.docker.internal:11434/v1"
 
 
+
+# Effective cap when the install has no per-video length limit (one week).
+UNLIMITED_VIDEO_DURATION_SECONDS = 7 * 24 * 3600
+
 class Config:
     def __init__(self):
         self.openai_api_key = self._get_runtime_setting("OPENAI_API_KEY")
@@ -202,6 +206,16 @@ class Config:
 
         self.self_host = self._get_bool_env("SELF_HOST", True)
         self.monetization_enabled = not self.self_host
+        # Pressloom (modified SupoClip, AGPL-3.0), 2026-11-24: self-hosted installs have no
+        # per-video length limit unless MAX_VIDEO_DURATION is set to a positive number. The
+        # caps become one week so existing comparisons and arithmetic keep working.
+        self.video_duration_unlimited = self.self_host and self._get_int_env(
+            "MAX_VIDEO_DURATION", 0
+        ) <= 0
+        if self.video_duration_unlimited:
+            self.max_video_duration = UNLIMITED_VIDEO_DURATION_SECONDS
+            self.pro_youtube_max_video_duration = UNLIMITED_VIDEO_DURATION_SECONDS
+            self.scale_youtube_max_video_duration = UNLIMITED_VIDEO_DURATION_SECONDS
         self.backend_auth_secret = self._get_optional_env("BACKEND_AUTH_SECRET")
         # Shared with the MCP server; enables its OAuth endpoints (/internal/mcp-oauth).
         self.mcp_oauth_secret = self._get_optional_env("MCP_OAUTH_SECRET")
@@ -225,7 +239,7 @@ class Config:
         self.aws_access_key_id = self._get_optional_env("AWS_ACCESS_KEY_ID")
         self.aws_secret_access_key = self._get_optional_env("AWS_SECRET_ACCESS_KEY")
         self.ses_from_email = os.getenv(
-            "SES_FROM_EMAIL", "SupoClip <onboarding@example.com>"
+            "SES_FROM_EMAIL", "Pressloom Clips <onboarding@example.com>"
         )
         self.app_base_url = (
             self._get_optional_env("NEXT_PUBLIC_APP_URL") or "http://localhost:3107"

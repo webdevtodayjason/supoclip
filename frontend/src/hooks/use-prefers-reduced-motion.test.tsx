@@ -8,7 +8,6 @@ import { NextIntlClientProvider } from "next-intl";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { ClipCutAnimation } from "@/components/auth/clip-cut-animation";
-import { ProductFilm } from "@/components/landing/product-film";
 
 const messages: Record<string, unknown> = {};
 for (const file of readdirSync(join(process.cwd(), "messages/en"))) {
@@ -66,14 +65,6 @@ async function hydrateWithReducedMotion(ui: ReactNode) {
 }
 
 describe("reduced motion hydration", () => {
-  it("hydrates the landing product film, then holds a still without the cursor", async () => {
-    const { container, onRecoverableError } = await hydrateWithReducedMotion(<ProductFilm />);
-
-    expect(onRecoverableError).not.toHaveBeenCalled();
-    expect(container.querySelector('[class*="z-[70]"]')).toBeNull();
-    expect(container.querySelector("button[disabled]")).not.toBeNull();
-  });
-
   it("hydrates the auth animation, then shows the finished clips", async () => {
     const { container, onRecoverableError } = await hydrateWithReducedMotion(<ClipCutAnimation />);
 
@@ -83,11 +74,4 @@ describe("reduced motion hydration", () => {
     await vi.waitFor(() => expect(container.textContent).toContain(ready), { timeout: 3000 });
   });
 
-  it("follows a change to the setting after hydration", async () => {
-    const { container } = await hydrateWithReducedMotion(<ProductFilm />);
-    expect(container.querySelector('[class*="z-[70]"]')).toBeNull();
-
-    await act(async () => setReduce(false));
-    expect(container.querySelector('[class*="z-[70]"]')).not.toBeNull();
-  });
 });

@@ -16,6 +16,8 @@ export interface CaptionStyle {
     | "TikTokSans-Regular"
     | "TikTokSans-Bold"
     | "Poppins-ExtraBold"
+    | "Anton-Regular"
+    /** Legacy drafts only; the backend renders it as Anton. */
     | "THEBOLDFONT";
   size: number;
   color: string;

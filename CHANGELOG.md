@@ -1,8 +1,17 @@
 # Changelog
 
-What changed in SupoClip for people using the product. Newest dates are first.
+What changed in Pressloom Clips for people using the product. Newest dates are first. Entries before 2026-11-24 are from SupoClip, the upstream project this fork is based on.
 
 Add a line here when a pull request changes something a user can see. Use **New**, **Improved**, **Fixed**, or **Under the hood**, describe the change in plain language, and link the pull request. Skip internal-only work, or fold it into one **Under the hood** line. Do not include customer names, email addresses, user IDs, or anything else private.
+
+## 2026-11-24
+
+- **Fixed:** New installs can sign up again.
+- **New:** The app is now Pressloom Clips, with a new logo. Every screen links to the SupoClip project it is based on, its AGPL-3.0 license, and this install's source code.
+- **Improved:** Opening the site goes straight to the app, or to sign-in. The marketing pages are gone.
+- **Improved:** Self-hosted installs have no video length limit by default.
+- **Improved:** Captions that used The Bold Font now use Anton, which looks very similar and is licensed for commercial use. Older drafts render with Anton automatically.
+- **Fixed:** New installs no longer show a stale "video downloads degraded" notice or a creator-program announcement.
 
 ## 2026-11-18
 

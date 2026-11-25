@@ -30,7 +30,7 @@ AI_EDIT_QUEUE = "supoclip_ai"
 AI_EDIT_TIMEOUT_SECONDS = 120
 AI_EDIT_RESULT_TTL_SECONDS = 3600
 MAX_INSTRUCTION_CHARS = 1000
-FONTS = ("TikTokSans-Regular", "TikTokSans-Bold", "Poppins-ExtraBold", "THEBOLDFONT")
+FONTS = ("TikTokSans-Regular", "TikTokSans-Bold", "Poppins-ExtraBold", "Anton-Regular")
 
 
 # --------------------------------------------------------------------------

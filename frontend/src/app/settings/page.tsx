@@ -34,9 +34,10 @@ import { CreatorCodeField } from "@/components/billing/creator-code-field";
 import { toast } from "sonner";
 import { track } from "@/lib/datafast";
 import Link from "next/link";
-import { AlertCircle, Bot, Check, ChevronRight, Clock, CreditCard, Languages, Loader2, Mail, Megaphone, Share2, Type } from "lucide-react";
+import { AlertCircle, Bot, Check, ChevronRight, Clock, CreditCard, Languages, Loader2, Mail, Share2, Type } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { FontSelectOption, type FontOption } from "@/components/font-select-option";
+import { LegalNotice } from "@/components/legal-notice";
 
 interface UserPreferences {
   fontFamily: string;
@@ -599,15 +600,6 @@ export default function SettingsPage() {
           </Link>
         )}
 
-        <Link href="/settings/creator-program" className="group flex items-center gap-4 rounded-2xl border bg-background p-5 transition-colors hover:border-foreground/25">
-          <span className="flex size-9 items-center justify-center rounded-lg bg-muted"><Megaphone className="size-4" /></span>
-          <span className="min-w-0 flex-1">
-            <span className="block text-sm font-semibold">{t("links.creatorTitle")}</span>
-            <span className="block text-xs text-muted-foreground">{t("links.creatorDescription")}</span>
-          </span>
-          <ChevronRight className="size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5" />
-        </Link>
-
         <DeleteAccountSection
           email={session.user.email}
           hasAppStoreSubscription={
@@ -615,6 +607,8 @@ export default function SettingsPage() {
             ["active", "trialing", "past_due"].includes(billingSummary.subscription_status)
           }
         />
+
+        <LegalNotice className="px-1" />
 
         {error && (
           <Alert className="border-red-200 bg-red-50 dark:border-red-900/60 dark:bg-red-950/40">

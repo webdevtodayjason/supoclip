@@ -4,7 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-SupoClip is an open-source alternative to OpusClip — an AI-powered video clipping tool that transforms long-form content into viral short clips. AGPL-3.0 licensed.
+Pressloom Clips is a modified version of SupoClip (an open-source OpusClip alternative): an AI-powered video clipping tool that turns long-form content into short clips. AGPL-3.0 licensed.
+
+**Clean-room rule:** this fork is built on SupoClip commit `d2378a9`, the last AGPL-3.0 release. Never read, copy, merge or cherry-pick upstream SupoClip code after that commit (it is under a noncommercial license). Rebuild upstream features from public descriptions only. See CONTRIBUTING.md. Mark files you change with a "Modified by Pressloom" note and the date.
 
 ## Development Commands
 
