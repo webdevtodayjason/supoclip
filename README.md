@@ -16,7 +16,7 @@ logo as its own brand.
 - **Source code:** everyone who uses an install of Pressloom Clips over a network can get its
   complete source from the "Source" link in the app (AGPL-3.0 §13). Set `NEXT_PUBLIC_SOURCE_URL`
   to the exact code you deploy.
-- **Changes:** files changed by Pressloom carry a "Modified by Pressloom" notice with the date.
+- **Changes:** [MODIFICATIONS.md](MODIFICATIONS.md) lists everything Pressloom changed and when; many changed files also carry a "Modified by Pressloom" note.
 - **Clean room:** this fork does not include any SupoClip code released after 18 November 2026
   under the SupoClip Noncommercial Source License. Features added later upstream are rebuilt
   here from their public descriptions only. Do not merge or cherry-pick from upstream `main`.
